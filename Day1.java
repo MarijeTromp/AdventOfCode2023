@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.Scanner;
 public class Day1 {
 
-    public static void one_point_one() throws FileNotFoundException {
-        String filePath = "Input/Day1.txt";
+    public static void one_point_one() throws IOException {
+        String filePath = "Input/generated_lines.txt";
 
         File file = new File(filePath);
         Scanner sc = new Scanner(file);
+
+        FileWriter fileWriter = new FileWriter("labels.txt");
+        BufferedWriter writer = new BufferedWriter(fileWriter);
 
         int total = 0;
 
@@ -33,9 +36,12 @@ public class Day1 {
             }
 
             String numString = String.valueOf((char)numChar[0]) + String.valueOf((char)numChar[1]);
+            writer.write(numString + "\n");
 
             total += Integer.valueOf(numString);
         }
+
+        writer.close();
 
         System.out.println(total);
 
@@ -118,7 +124,7 @@ public class Day1 {
 
     public static void main(String args[]){
         try{
-            one_point_two();
+            one_point_one();
         } catch(Exception e) {
             e.printStackTrace();
         }
